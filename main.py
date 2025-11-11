@@ -7,24 +7,30 @@ import tempfile
 import shutil
 import threading
 import time
-
+import shutil
 
 def clear_screen():
     """Clear the terminal screen"""
     os.system('clear')
 
-
 def print_logo():
     """Display the Jango ASCII logo"""
     clear_screen()
-    print("\n\n")
-    print("░░░░░██╗░█████╗░███╗░░██╗░██████╗░░█████╗░")
-    print("░░░░░██║██╔══██╗████╗░██║██╔════╝░██╔══██╗")
-    print("░░░░░██║███████║██╔██╗██║██║░░██╗░██║░░██║")
-    print("██╗░░██║██╔══██║██║╚████║██║░░╚██╗██║░░██║")
-    print("╚█████╔╝██║░░██║██║░╚███║╚██████╔╝╚█████╔╝")
-    print("░╚════╝░╚═╝░░╚═╝╚═╝░░╚══╝░╚═════╝░░╚════╝░")
-    print("\n\n")
+    lines = [
+    "        __                       ",
+    "       / /___ _____  ____ _____  ",
+    "  __  / / __ `/ __ \/ __ `/ __ \ ",
+    " / /_/ / /_/ / / / / /_/ / /_/ / ",
+    " \____/\__,_/_/ /_/\__, /\____/  ",
+    "                  /____/         "
+    ]
+    
+    terminal_width = shutil.get_terminal_size().columns
+    
+    print("\n")
+    for line in lines:
+        print(line.center(terminal_width))
+    print("\n")
 
 
 def loading_spinner(stop_event, message="Processing"):
@@ -184,6 +190,7 @@ def create_desktop_entry(file_path, app_name):
 
 def main():
     """Main application flow"""
+    #monitor_terminal_resize()
     print_logo()
     check_sudo()
     print_logo()
